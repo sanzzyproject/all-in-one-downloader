@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All-in-One Downloader</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>⚡ AIO Downloader</h1>
+            <p>Unduh Video, Musik, & Gambar dari TikTok, IG, FB, Youtube, dll.</p>
+        </header>
+
+        <div class="search-box">
+            <input type="text" id="urlInput" placeholder="Tempel URL di sini (TikTok, IG, YT...)" autocomplete="off">
+            <button id="downloadBtn" onclick="downloadMedia()">Unduh</button>
+        </div>
+
+        <div id="loading" class="hidden">
+            <div class="spinner"></div>
+            <p>Sedang memproses...</p>
+        </div>
+
+        <div id="error-msg" class="hidden"></div>
+
+        <div id="result" class="hidden">
+            </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
