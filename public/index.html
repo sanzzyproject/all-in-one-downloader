@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COMIC DOWNLOADER</title>
+    <title>BRUTAL DOWNLOADER</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="brand">POW! DL</a>
+        <a href="index.html" class="brand">DL_MANAGER</a>
         <div class="nav-links">
             <a href="docs.html">DOCS</a>
         </div>
@@ -17,70 +17,44 @@
 
     <div class="container">
         
-        <div class="main-card">
-            <div class="card-title">ALL-IN-ONE DOWNLOADER</div>
+        <div class="brutalist-card">
+            <div class="brutalist-card__header">
+                <div class="brutalist-card__icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                    </svg>
+                </div>
+                <div class="brutalist-card__alert">DOWNLOADER</div>
+            </div>
             
-            <p style="text-align: center; margin-bottom: 20px; font-weight: bold;">
-                Paste link from TikTok, IG, FB, Youtube, Spotify, etc.
-            </p>
-
-            <input type="text" id="urlInput" class="brutalist-input" placeholder="https://..." autocomplete="off">
+            <div class="brutalist-card__message">
+                Paste your link below. Supports TikTok, IG, FB, Youtube, and more.
+                <br><br>
+                <input type="text" id="urlInput" class="brutalist-input" placeholder="HTTPS://LINK-HERE..." autocomplete="off">
+            </div>
             
-            <div class="comic-brutal-button-container">
-                <button id="downloadBtn" onclick="fetchMedia()" class="comic-brutal-button">
-                    <div class="button-inner">
-                        <span class="button-text">GET DATA!</span>
-                        <div class="halftone-overlay"></div>
-                    </div>
-                    <div class="button-shadow"></div>
-                    <div class="button-frame"></div>
+            <div class="brutalist-card__actions">
+                <button id="downloadBtn" onclick="fetchMedia()" class="brutalist-card__button brutalist-card__button--read">
+                    GET DATA
                 </button>
             </div>
         </div>
 
-        <div id="loading" class="hidden" style="text-align: center; font-size: 1.5rem; font-weight: bold; text-shadow: 2px 2px 0 #fff;">
-            PROCESSING... ⏳
+        <div id="loading" class="brutalist-card hidden">
+            <div class="loading-container">
+                <span class="loader"></span>
+                <p style="margin-top:10px;">PROCESSING...</p>
+            </div>
         </div>
-        <div id="error-msg" class="hidden"></div>
 
-        <div id="result"></div>
-
-        <div class="features-grid">
-            
-            <div class="feature-card">
-                <div class="pricing-plan">PRICE</div>
-                <div class="price-value">FREE</div>
-                <p>No hidden fees.</p>
-                <ul class="check-list">
-                    <li class="check-list-item">✅ Unlimited Access</li>
-                    <li class="check-list-item">✅ No Registration</li>
-                    <li class="check-list-item">✅ Forever Free</li>
-                </ul>
-            </div>
-
-            <div class="feature-card" style="background: #e0f7fa;">
-                <div class="pricing-plan" style="color: #006064;">SPEED</div>
-                <div class="price-value">TURBO</div>
-                <p>Lightning fast server.</p>
-                <ul class="check-list">
-                    <li class="check-list-item">⚡ Direct Download</li>
-                    <li class="check-list-item">⚡ No Ads Popups</li>
-                    <li class="check-list-item">⚡ High Priority</li>
-                </ul>
-            </div>
-
-            <div class="feature-card" style="background: #fff9c4;">
-                <div class="pricing-plan" style="color: #f57f17;">SUPPORT</div>
-                <div class="price-value">ALL MEDIA</div>
-                <p>Any platform you need.</p>
-                <ul class="check-list">
-                    <li class="check-list-item">🎵 Audio / MP3</li>
-                    <li class="check-list-item">🎬 Video / MP4</li>
-                    <li class="check-list-item">📸 Images / HD</li>
-                </ul>
-            </div>
-
+        <div id="error-msg" class="brutalist-card hidden" style="border-color: red;">
+            <div class="brutalist-card__alert" style="color: red;">ERROR</div>
+            <div class="brutalist-card__message" id="error-text"></div>
         </div>
+
+        <div id="result" class="result-container" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            </div>
+
     </div>
 
     <script src="script.js"></script>
