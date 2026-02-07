@@ -3,32 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All-in-One Downloader</title>
+    <title>BRUTAL DOWNLOADER</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <nav class="navbar">
+        <a href="index.html" class="brand">DL_MANAGER</a>
+        <div class="nav-links">
+            <a href="docs.html">DOCS</a>
+        </div>
+    </nav>
+
     <div class="container">
-        <header>
-            <h1>⚡ AIO Downloader</h1>
-            <p>Unduh Video, Musik, & Gambar dari TikTok, IG, FB, Youtube, dll.</p>
-        </header>
-
-        <div class="search-box">
-            <input type="text" id="urlInput" placeholder="Tempel URL di sini (TikTok, IG, YT...)" autocomplete="off">
-            <button id="downloadBtn" onclick="downloadMedia()">Unduh</button>
-        </div>
-
-        <div id="loading" class="hidden">
-            <div class="spinner"></div>
-            <p>Sedang memproses...</p>
-        </div>
-
-        <div id="error-msg" class="hidden"></div>
-
-        <div id="result" class="hidden">
+        
+        <div class="brutalist-card">
+            <div class="brutalist-card__header">
+                <div class="brutalist-card__icon">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+                    </svg>
+                </div>
+                <div class="brutalist-card__alert">DOWNLOADER</div>
             </div>
+            
+            <div class="brutalist-card__message">
+                Paste your link below. Supports TikTok, IG, FB, Youtube, and more.
+                <br><br>
+                <input type="text" id="urlInput" class="brutalist-input" placeholder="HTTPS://LINK-HERE..." autocomplete="off">
+            </div>
+            
+            <div class="brutalist-card__actions">
+                <button id="downloadBtn" onclick="fetchMedia()" class="brutalist-card__button brutalist-card__button--read">
+                    GET DATA
+                </button>
+            </div>
+        </div>
+
+        <div id="loading" class="brutalist-card hidden">
+            <div class="loading-container">
+                <span class="loader"></span>
+                <p style="margin-top:10px;">PROCESSING...</p>
+            </div>
+        </div>
+
+        <div id="error-msg" class="brutalist-card hidden" style="border-color: red;">
+            <div class="brutalist-card__alert" style="color: red;">ERROR</div>
+            <div class="brutalist-card__message" id="error-text"></div>
+        </div>
+
+        <div id="result" class="result-container" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            </div>
+
     </div>
 
     <script src="script.js"></script>
