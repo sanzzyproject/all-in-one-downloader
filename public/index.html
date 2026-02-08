@@ -3,57 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEDIA DOWNLOADER</title>
+    <title>MEDIA DOWNLOADER ULTRA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;800&family=Space+Grotesk:wght@300;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="brand">MediaDownloader</a>
-        <div class="nav-links">
-            <a href="docs.html">DOCS</a>
+    <div class="bg-noise"></div>
+    <div class="floating-shape shape-1"></div>
+    <div class="floating-shape shape-2"></div>
+
+    <div class="marquee-top">
+        <div class="marquee-content">
+            SYSTEM READY • V.3.0 ULTRA • NO WATERMARK • FAST SPEED • SECURE • SANN404 • SYSTEM READY • V.3.0 ULTRA • NO WATERMARK •
         </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="brand-container">
+            <div class="brand-glitch" data-text="MD-ULTRA">MediaDownloader</div>
+        </div>
+       
+        <a href="docs.html" class="nav-btn">BACA YA INI</a>
     </nav>
 
     <div class="container">
         
-        <div class="brutalist-card">
-            <div class="brutalist-card__header">
-                <div class="brutalist-card__icon">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
-                    </svg>
+        <div class="cyber-card main-card">
+            <div class="screw top-left">+</div>
+            <div class="screw top-right">+</div>
+            <div class="screw bottom-left">+</div>
+            <div class="screw bottom-right">+</div>
+
+            <div class="card-header-visual">
+                <div class="profile-section">
+                    <img src="https://cdn.odzre.my.id/rc4.jpg" alt="User Profile" class="avatar-img" id="userAvatar">
+                    <div class="profile-info">
+                        <span class="user-role">ADMINISTRATOR</span>
+                        <span class="user-action">PASTE YOUR LINK BELOW</span>
+                    </div>
                 </div>
-                <div class="brutalist-card__alert">DOWNLOADER</div>
+                <div class="decor-lines">///</div>
             </div>
             
-            <div class="brutalist-card__message">
-                Paste your link below. Supports TikTok, IG, FB, Youtube, and more.
-                <br><br>
-                <input type="text" id="urlInput" class="brutalist-input" placeholder="HTTPS://LINK-HERE..." autocomplete="off">
-            </div>
-            
-            <div class="brutalist-card__actions">
-                <button id="downloadBtn" onclick="fetchMedia()" class="brutalist-card__button brutalist-card__button--read">
-                    GET DATA
+            <div class="card-body">
+                <div class="input-wrapper">
+                    <div class="input-label">TARGET URL:</div>
+                    <input type="text" id="urlInput" class="cyber-input" placeholder="https://tiktok.com/..." autocomplete="off">
+                    <div class="input-focus-border"></div>
+                </div>
+
+                <div class="platform-tags">
+                    <span>#TIKTOK</span> <span>#IG</span> <span>#YT</span> <span>#FB</span> <span>#X</span>
+                </div>
+                
+                <button id="downloadBtn" onclick="fetchMedia()" class="cyber-button">
+                    <span class="btn-text">INITIATE DOWNLOAD</span>
+                    <span class="btn-glare"></span>
                 </button>
             </div>
         </div>
 
-        <div id="loading" class="brutalist-card hidden">
-            <div class="loading-container">
-                <span class="loader"></span>
-                <p style="margin-top:10px;">PROCESSING...</p>
-            </div>
+        <div id="loading" class="cyber-card hidden" style="text-align: center; padding: 40px;">
+            <div class="scanner"></div>
+            <p class="blink-text">PROCESSING DATA STREAM...</p>
         </div>
 
-        <div id="error-msg" class="brutalist-card hidden" style="border-color: red;">
-            <div class="brutalist-card__alert" style="color: red;">ERROR</div>
-            <div class="brutalist-card__message" id="error-text"></div>
+        <div id="error-msg" class="cyber-card error-state hidden">
+            <div class="error-header">SYSTEM ERROR</div>
+            <div class="error-body" id="error-text"></div>
         </div>
 
-        <div id="result" class="result-container" style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 20px;">
-            </div>
+        <div id="result" class="result-stack"></div>
+
+        <footer class="sann-footer">
+            <div class="footer-line"></div>
+            <p>POWERED BY <span class="sann-highlight">SANN404 FORUM</span></p>
+            <p style="font-size: 0.7rem; opacity: 0.6;">ENGINEERED FOR PERFORMANCE</p>
+        </footer>
 
     </div>
 
