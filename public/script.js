@@ -26,7 +26,7 @@ async function fetchMedia() {
         const json = await response.json();
 
         if (!response.ok || !json.success) {
-            throw new Error(json.error || 'Media tidak ditemukan.');
+            throw new Error(json.error || 'Media tidak ditemukan / Link Invalid.');
         }
 
         renderResult(json.data);
@@ -40,56 +40,55 @@ async function fetchMedia() {
     }
 }
 
-// Function Render Hasil ke UI
+// UPDATE: Render HTML yang lebih "RAME"
 function renderResult(medias) {
     const resultDiv = document.getElementById('result');
 
     medias.forEach((media, index) => {
-        // Buat elemen card baru
         const card = document.createElement('div');
-        card.className = 'brutalist-card';
+        card.className = 'cyber-card result-card';
+        // Animasi muncul
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.4s ease';
+        setTimeout(() => {
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, index * 100);
 
-        // Tentukan Judul Tipe
-        let typeTitle = 'MEDIA';
+        let typeTitle = 'MEDIA_FILE';
         let mediaPreview = '';
+        const ext = media.extension || 'mp4';
+        const filename = `Sann404_DL_${Date.now()}_${index}.${ext}`;
 
         if (media.type === 'video') {
-            typeTitle = `VIDEO ${media.quality || ''}`;
+            typeTitle = `VIDEO_DATA [${media.quality || 'HD'}]`;
             mediaPreview = `
-                <video controls poster="${media.thumbnail || ''}">
-                    <source src="${media.url}" type="video/mp4">
-                </video>`;
+                <div style="background:#000; padding:5px; border:2px solid #000;">
+                    <video controls poster="${media.thumbnail || ''}" playsinline style="border:none; margin:0;">
+                        <source src="${media.url}" type="video/mp4">
+                    </video>
+                </div>`;
         } else if (media.type === 'image') {
-            typeTitle = 'IMAGE';
-            mediaPreview = `<img src="${media.url}" alt="Image Result">`;
+            typeTitle = 'IMAGE_DATA';
+            mediaPreview = `<img src="${media.url}" alt="Result">`;
         } else if (media.type === 'audio') {
-            typeTitle = 'AUDIO';
-            mediaPreview = `
-                <audio controls style="width:100%; margin-bottom:10px;">
-                    <source src="${media.url}" type="audio/mpeg">
-                </audio>`;
+            typeTitle = 'AUDIO_STREAM';
+            mediaPreview = `<audio controls style="width:100%;"><source src="${media.url}" type="audio/mpeg"></audio>`;
         }
 
-        // Tentukan nama file
-        const ext = media.extension || (media.type === 'video' ? 'mp4' : media.type === 'audio' ? 'mp3' : 'jpg');
-        const filename = `downloader_result_${index + 1}.${ext}`;
-
-        // HTML Isi Card
         card.innerHTML = `
-            <div class="brutalist-card__header">
-                <div class="brutalist-card__icon">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"></path>
-                    </svg>
-                </div>
-                <div class="brutalist-card__alert">SUCCESS</div>
+            <div class="result-header">
+                <span>${typeTitle}</span>
+                <span class="result-badge">SUCCESS</span>
             </div>
-            <div class="brutalist-card__message">
-                <div>${typeTitle}</div>
+            <div class="result-body">
                 ${mediaPreview}
-            </div>
-            <div class="brutalist-card__actions">
-                <button class="brutalist-card__button brutalist-card__button--mark" 
+                <div style="margin: 15px 0; font-family: 'JetBrains Mono'; font-size: 0.8rem; border-top: 2px dashed #ccc; padding-top: 10px;">
+                    > FILENAME: ${filename} <br>
+                    > SIZE: UNKNOWN
+                </div>
+                <button class="cyber-button" style="background: var(--accent-tertiary); color:white; border-color:black;"
                     onclick="forceDownload('${media.url}', '${filename}', this)">
                     DOWNLOAD NOW
                 </button>
@@ -100,14 +99,13 @@ function renderResult(medias) {
     });
 }
 
-// Function Force Direct Download
+// Function Force Direct Download (TIDAK BERUBAH)
 async function forceDownload(url, filename, btnElement) {
     const originalText = btnElement.innerText;
     btnElement.innerText = "DOWNLOADING...";
     btnElement.disabled = true;
 
     try {
-        // Coba fetch sebagai blob untuk direct download
         const response = await fetch(url);
         if (!response.ok) throw new Error("Network error");
         
@@ -127,11 +125,9 @@ async function forceDownload(url, filename, btnElement) {
 
     } catch (e) {
         console.error("Direct download failed, opening in new tab", e);
-        // Fallback jika CORS memblokir (misal TikTok kadang strict)
-        // Kita buka linknya langsung
         window.location.href = url; 
     } finally {
-        btnElement.innerText = "DOWNLOADED";
+        btnElement.innerText = "COMPLETED";
         setTimeout(() => {
             btnElement.innerText = originalText;
             btnElement.disabled = false;
